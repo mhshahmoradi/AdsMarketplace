@@ -2,7 +2,7 @@
 
 A two-sided marketplace connecting Telegram channel owners with advertisers through a unified deal workflow.
 
-**MVP is live at `@ads_ekhsh_bot`**
+**MVP is live at `@Ads_mpbot`**
 
 ---
 
@@ -154,7 +154,7 @@ Profile page shows TON wallet connection via TON Connect. Balance is fetched fro
 
 # **ATTENTION**
 
-# The MVP is already up and running at (@ads_ekhsh_bot), the following instrucitons are for running the project locally
+# The MVP is already up and running at (@Ads_mpbot), the following instrucitons are for running the project locally
 
 ---
 
