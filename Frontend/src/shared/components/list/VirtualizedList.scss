@@ -1,0 +1,12 @@
+.virtualized-list {
+    touch-action: pan-y;
+    -webkit-overflow-scrolling: touch;
+}
+
+.virtualized-list a,
+.virtualized-list button,
+.virtualized-list i,
+.virtualized-list svg,
+.virtualized-list [role="button"] {
+    touch-action: pan-y !important;
+}

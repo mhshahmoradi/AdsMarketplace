@@ -1,0 +1,19 @@
+body[data-theme="dark"] {
+    color-scheme: dark;
+    --secondary-color: #1c1c1d;
+
+    --bg-color: var(--black);
+    --bg-color-rgb: var(--black-rgb);
+    --text-color: var(--white);
+    --text-color-rgb: var(--white-rgb);
+
+    .shimmer {
+        background: linear-gradient(
+            to right,
+            rgba(255, 255, 255, 0.05) 8%,
+            rgba(255, 255, 255, 0.1) 18%,
+            rgba(255, 255, 255, 0.05) 33%
+        );
+        background-size: 1000px 100%;
+    }
+}

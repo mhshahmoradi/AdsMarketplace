@@ -1,0 +1,40 @@
+:root {
+    /* Base Colors */
+    --white: #ffffff;
+    --black: #000000;
+    --white-rgb: 255, 255, 255;
+    --black-rgb: 0, 0, 0;
+
+    /* Core Semantic Colors (5 maximum) */
+    --primary-color: #3590eb;
+    --primary-color-rgb: 34, 154, 240;
+
+    --secondary-color: #efeff4;
+
+    --success-color: #10b981;
+    --success-color-rgb: 16, 185, 129;
+
+    --warning-color: #f59e0b;
+    --warning-color-rgb: 245, 158, 11;
+
+    --danger-color: #ef4444;
+    --danger-color-rgb: 239, 68, 68;
+
+    --muted-color: #778da9;
+    --muted-color-rgb: 119, 141, 169;
+
+    --info-color: #778da9;
+    --accent-color: #3590eb;
+
+    --bg-color: var(--white);
+    --bg-color-rgb: var(--white-rgb);
+    --text-color: var(--black);
+    --text-color-rgb: var(--black-rgb);
+
+    --border-radius: 0.75rem;
+
+    /* Animation */
+    --animate-duration: 0.5s;
+    --animate-delay: 0;
+    --animate-repeat: 1;
+}

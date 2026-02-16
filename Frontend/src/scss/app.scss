@@ -1,0 +1,11 @@
+@use "sass:meta";
+@charset "UTF-8";
+
+@include meta.load-css("animate.css");
+@include meta.load-css("swiper/css");
+@include meta.load-css("swiper/css/pagination");
+
+@include meta.load-css("variables");
+@include meta.load-css("dark");
+@include meta.load-css("fonts");
+@include meta.load-css("general");

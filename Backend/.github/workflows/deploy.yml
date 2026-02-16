@@ -1,0 +1,33 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Create .env file
+        run: |
+          cat > .env << EOF
+          TELEGRAM_BOT_TOKEN=8561110321:AAEOzet0vfIOvYjiNALiuMZktGnDGC5Jid8
+          TON_API_KEY=${{ secrets.TON_API_KEY }}
+          EOF
+        working-directory: ${{ github.workspace }}
+
+      - name: Stop existing containers
+        run: docker compose down
+        working-directory: ${{ github.workspace }}
+
+      - name: Build and start containers
+        run: docker compose up -d --build
+        working-directory: ${{ github.workspace }}
+
+      - name: Clean up old images
+        run: docker image prune -f

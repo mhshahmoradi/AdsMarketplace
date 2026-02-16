@@ -1,0 +1,59 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    container_name: telegramads-db
+    environment:
+      POSTGRES_USER: telegramads
+      POSTGRES_PASSWORD: telegramads_secret
+      POSTGRES_DB: telegramads
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U telegramads -d telegramads"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: telegramads-pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: mh.shahmorady@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    ports:
+      - "5050:80"
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    depends_on:
+      - postgres
+    restart: unless-stopped
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: telegramads-api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://+:8080
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=telegramads;Username=telegramads;Password=telegramads_secret
+      - Telegram__BotToken=${TELEGRAM_BOT_TOKEN}
+      - TelegramMiniAppAuthorizationOptions__BotToken=${TELEGRAM_BOT_TOKEN}
+      - Ton__Network=testnet
+      - Ton__ApiKey=${TON_API_KEY:-}
+    ports:
+      - "5000:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - app_data:/opt/telegramads
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  pgadmin_data:
+  app_data:

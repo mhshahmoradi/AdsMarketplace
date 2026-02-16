@@ -1,0 +1,8 @@
+{
+    "dotnet.defaultSolution": "TelegramAds.slnx",
+    "chat.tools.terminal.autoApprove": {
+        "mkdir": true,
+        "dotnet ef": true,
+        "read": true
+    }
+}

@@ -1,0 +1,596 @@
+#container-page-profile {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    min-height: 0;
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: relative;
+    padding-top: calc(
+        var(--tg-viewport-safe-area-inset-top) + var(--tg-viewport-content-safe-area-inset-top)
+    );
+    padding-inline: 1rem;
+    padding-bottom: calc(
+        1rem + var(--tg-viewport-safe-area-inset-bottom) +
+            var(--tg-viewport-content-safe-area-inset-bottom)
+    );
+
+    .profile-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem 0 1.5rem;
+        gap: 0.5rem;
+        flex-shrink: 0;
+
+        .profile-picture {
+            width: 7.5rem;
+            height: 7.5rem;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+
+            > img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            > svg {
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        > h1 {
+            font-size: 1.625rem;
+            line-height: 2rem;
+            font-weight: 500;
+        }
+
+        .wallet-connect-card {
+            width: min(100%, 24rem);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.625rem;
+            margin-top: 0.5rem;
+            padding: 0.75rem;
+            border-radius: var(--border-radius);
+            background-color: var(--secondary-color);
+
+            .wallet-disconnected-lottie {
+                width: 4rem;
+                height: 4rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-shrink: 0;
+
+                > div {
+                    width: 100%;
+                    height: 100%;
+                }
+
+                > span {
+                    font-size: 2.25rem;
+                }
+            }
+
+            .wallet-status {
+                width: 100%;
+                text-align: center;
+                font-size: 0.875rem;
+                line-height: 1.25rem;
+                opacity: 0.8;
+
+                &.disconnected {
+                    opacity: 0.75;
+                }
+
+                &.connected {
+                    opacity: 1;
+                    font-weight: 500;
+                }
+            }
+
+            .wallet-connect-button {
+                align-self: center;
+                button {
+                    box-shadow: none;
+                    background-color: var(--primary-color);
+                    > div {
+                        color: var(--white);
+                    }
+                    > svg {
+                        > path {
+                            fill: var(--white);
+                        }
+                    }
+                }
+            }
+
+            .wallet-actions {
+                display: none;
+                gap: 0.5rem;
+                width: 100%;
+            }
+
+            .wallet-action {
+                flex: 1;
+
+                border-radius: var(--border-radius);
+                padding: 0.5rem 0.75rem;
+                font-size: 0.875rem;
+                font-weight: 600;
+                cursor: pointer;
+                color: var(--text-color);
+                background-color: var(--bg-color);
+
+                &:active {
+                    transform: scale(0.98);
+                }
+
+                &.secondary {
+                    color: var(--text-color);
+                    background-color: rgba(var(--text-color-rgb), 0.12);
+                }
+            }
+
+            .wallet-balance-card {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                gap: 0.625rem;
+                border-radius: var(--border-radius);
+                padding: 0.75rem;
+                background-color: var(--secondary-color);
+
+                .wallet-balance-head {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    gap: 0.5rem;
+
+                    > h3 {
+                        font-size: 0.95rem;
+                        line-height: 1.2rem;
+                        font-weight: 600;
+                    }
+
+                    .wallet-balance-amount {
+                        font-size: 1rem;
+                        line-height: 1.25rem;
+                        font-weight: 700;
+                        color: var(--text-color);
+                    }
+                }
+
+                .wallet-balance-meta {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    gap: 0.625rem;
+
+                    .label {
+                        font-size: 0.8rem;
+                        opacity: 0.65;
+                    }
+
+                    code {
+                        font-size: 0.75rem;
+                        line-height: 1rem;
+                        border-radius: var(--border-radius);
+                        padding: 0.25rem 0.5rem;
+                        background-color: var(--secondary-color);
+                        color: var(--text-color);
+                    }
+                }
+
+                .wallet-balance-updated {
+                    font-size: 0.75rem;
+                    opacity: 0.65;
+                }
+
+                .wallet-balance-error {
+                    font-size: 0.8rem;
+                    color: var(--danger-color);
+                }
+
+                .wallet-withdraw-button {
+                    width: 100%;
+
+                    border-radius: var(--border-radius);
+                    padding: 0.625rem 0.75rem;
+                    font-size: 0.9rem;
+                    font-weight: 600;
+                    cursor: pointer;
+                    color: var(--white);
+                    background-color: var(--primary-color);
+
+                    &:disabled {
+                        cursor: not-allowed;
+                        opacity: 0.45;
+                    }
+
+                    &:active {
+                        transform: scale(0.99);
+                    }
+                }
+            }
+        }
+    }
+
+    > section {
+        width: 100%;
+        overflow: visible;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+
+        #container-tabs-profile {
+            display: flex;
+            gap: 0.5rem;
+            padding: 0.25rem;
+            flex-shrink: 0;
+            background-color: var(--secondary-color);
+            border-radius: 1rem;
+            margin-bottom: 1rem;
+
+            > button {
+                flex: 1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 0.625rem 1rem;
+                border-radius: var(--border-radius);
+                cursor: pointer;
+                transition: all 0.2s ease;
+
+                outline: none;
+
+                > span {
+                    font-size: 1.0625rem;
+                    font-weight: 500;
+                    color: var(--text-color);
+                    opacity: 0.5;
+                    transition: opacity 0.2s ease;
+                }
+
+                &.active {
+                    background-color: var(--primary-color);
+
+                    > span {
+                        color: var(--white);
+                        opacity: 1;
+                    }
+                }
+
+                &:active {
+                    transform: scale(0.98);
+                }
+            }
+        }
+
+        .profile-list-items {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            padding-bottom: 0.75rem;
+        }
+    }
+}
+
+// List item styles moved to src/components/list/ListItem.scss
+// List state styles moved to src/components/list/ListStates.scss
+
+.container-empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    padding: 2rem 1rem;
+    text-align: center;
+
+    > p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+        opacity: 0.6;
+        max-width: 20rem;
+    }
+}
+
+.animate__fadeIn {
+    --animate-duration: 0.5s;
+}
+
+.container-modal-withdraw {
+    padding-bottom: calc(
+        var(--tg-viewport-safe-area-inset-bottom) +
+            var(--tg-viewport-content-safe-area-inset-bottom)
+    );
+
+    .withdraw-content {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        padding-bottom: 1.125rem;
+
+        > header {
+            padding-inline-end: 2rem;
+
+            > h2 {
+                font-size: 1.125rem;
+                line-height: 1.4rem;
+                font-weight: 600;
+            }
+
+            > p {
+                margin-top: 0.35rem;
+                font-size: 0.875rem;
+                line-height: 1.2rem;
+                opacity: 0.75;
+            }
+        }
+
+        .withdraw-balance-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem;
+            border-radius: var(--border-radius);
+            padding: 0.7rem 0.8rem;
+            background-color: var(--secondary-color);
+
+            > span {
+                font-size: 0.875rem;
+                opacity: 0.7;
+            }
+
+            > strong {
+                font-size: 0.95rem;
+                font-weight: 700;
+            }
+
+            > code {
+                font-size: 0.78rem;
+                border-radius: var(--border-radius);
+                padding: 0.2rem 0.45rem;
+                background-color: rgba(var(--text-color-rgb), 0.12);
+            }
+        }
+
+        .withdraw-slider-block {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            border-radius: var(--border-radius);
+            padding: 0.8rem;
+            background-color: var(--secondary-color);
+
+            .withdraw-slider-head {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 0.625rem;
+
+                > span {
+                    font-size: 0.875rem;
+                    opacity: 0.8;
+                }
+
+                > button {
+                    border-radius: var(--border-radius);
+                    padding: 0.3rem 0.6rem;
+                    font-size: 0.75rem;
+                    font-weight: 700;
+                    color: var(--white);
+                    background-color: var(--primary-color);
+                    cursor: pointer;
+
+                    &:disabled {
+                        cursor: not-allowed;
+                        opacity: 0.45;
+                    }
+                }
+            }
+
+            > input[type="range"] {
+                width: 100%;
+                accent-color: var(--primary-color);
+            }
+
+            .withdraw-slider-scale {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 0.5rem;
+                font-size: 0.74rem;
+                opacity: 0.6;
+            }
+        }
+
+        .withdraw-selected-amount {
+            width: 100%;
+            border-radius: var(--border-radius);
+            padding: 0.75rem 0.8rem;
+            background-color: rgba(var(--primary-color-rgb), 0.12);
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem;
+            cursor: pointer;
+            transition:
+                transform 0.2s ease,
+                opacity 0.2s ease;
+
+            &:active {
+                transform: scale(0.99);
+            }
+
+            &:disabled {
+                cursor: not-allowed;
+                opacity: 0.55;
+            }
+
+            > span {
+                font-size: 0.85rem;
+                opacity: 0.8;
+            }
+
+            > strong {
+                font-size: 1.15rem;
+                line-height: 1.4rem;
+                font-weight: 700;
+                color: var(--text-color);
+            }
+        }
+
+        .withdraw-submit-button {
+            width: 100%;
+
+            border-radius: var(--border-radius);
+            padding: 0.8rem 1rem;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--white);
+            background-color: var(--primary-color);
+            cursor: pointer;
+
+            &:disabled {
+                cursor: not-allowed;
+                opacity: 0.45;
+            }
+        }
+    }
+}
+
+.withdraw-custom-amount-overlay {
+    position: absolute;
+    inset-inline: 0;
+    top: calc(100% - 100vh);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: calc(
+            1rem + var(--tg-viewport-safe-area-inset-top) +
+                var(--tg-viewport-content-safe-area-inset-top)
+        )
+        1rem
+        calc(
+            1rem + var(--tg-viewport-safe-area-inset-bottom) +
+                var(--tg-viewport-content-safe-area-inset-bottom)
+        );
+    background: rgba(var(--black-rgb), 0.6);
+    backdrop-filter: blur(4px);
+    z-index: 10008;
+}
+
+@supports (height: 100dvh) {
+    .withdraw-custom-amount-overlay {
+        top: calc(100% - 100dvh);
+        height: 100dvh;
+    }
+}
+
+.withdraw-custom-amount-dialog {
+    width: 100%;
+    max-width: 24rem;
+    border-radius: var(--border-radius);
+    padding: 1.25rem;
+    background: var(--bg-color);
+    box-shadow: 0 0.75rem 2rem rgba(var(--black-rgb), 0.28);
+
+    > h3 {
+        font-size: 1.125rem;
+        line-height: 1.4rem;
+        font-weight: 700;
+    }
+
+    > p {
+        margin-top: 0.5rem;
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+        opacity: 0.78;
+    }
+}
+
+.withdraw-custom-amount-field {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+
+    > label {
+        font-size: 0.8125rem;
+        line-height: 1.125rem;
+        font-weight: 600;
+        opacity: 0.85;
+    }
+
+    > input {
+        width: 100%;
+        border-radius: var(--border-radius);
+        padding: 0.625rem 0.75rem;
+        border: 1px solid rgba(var(--text-color-rgb), 0.16);
+        background: rgba(var(--text-color-rgb), 0.04);
+        color: var(--text-color);
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+
+        &:focus {
+            border-color: rgba(var(--primary-color-rgb), 0.7);
+        }
+    }
+}
+
+.withdraw-custom-amount-error {
+    font-size: 0.8125rem;
+    line-height: 1.125rem;
+    color: var(--danger-color);
+    font-weight: 600;
+}
+
+.withdraw-custom-amount-actions {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.625rem;
+
+    > button {
+        border-radius: var(--border-radius);
+        padding: 0.65rem 1.125rem;
+        border: none;
+        font-size: 0.875rem;
+        line-height: 1.2rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition:
+            opacity 0.2s ease,
+            transform 0.2s ease;
+
+        &:active {
+            transform: scale(0.98);
+        }
+
+        &:disabled {
+            cursor: not-allowed;
+            opacity: 0.55;
+        }
+    }
+
+    .cancel-button {
+        background: var(--secondary-color);
+        color: var(--text-color);
+    }
+
+    .confirm-button {
+        background: var(--primary-color);
+        color: var(--white);
+    }
+}
